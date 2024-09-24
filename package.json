@@ -427,6 +427,27 @@
                 "properties": {
                   "backend": {
                     "type": "string",
+                    "const": "ignite"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "endPoint": {
+                    "type": "string"
+                  },
+                  "defaultCacheName": {
+                    "type": "number"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "backend": {
+                    "type": "string",
                     "const": "bigquery"
                   },
                   "name": {
@@ -601,6 +622,7 @@
     "@malloydata/malloy-sql": "0.0.187",
     "@malloydata/render": "0.0.187",
     "@malloydata/syntax-highlight": "0.0.187",
+    "@malloydata/db-ignite": "../malloy/packages/malloy-db-ignite",
     "@vscode/webview-ui-toolkit": "^1.2.1",
     "duckdb": "1.0.0",
     "lit": "^3.0.2",

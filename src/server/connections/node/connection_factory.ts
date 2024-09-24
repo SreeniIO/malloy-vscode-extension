@@ -38,6 +38,7 @@ import {fileURLToPath} from 'url';
 import {GenericConnection} from '../../../common/types/worker_message_types';
 import {TrinoExecutor} from '@malloydata/db-trino';
 import {createPrestoConnection} from './presto_connection';
+import {createIgniteConnection} from './ignite_connection';
 
 export class NodeConnectionFactory implements ConnectionFactory {
   connectionCache: Record<string, TestableConnection> = {};
@@ -72,6 +73,13 @@ export class NodeConnectionFactory implements ConnectionFactory {
       case ConnectionBackend.Postgres: {
         connection = await createPostgresConnection(
           this.client,
+          connectionConfig,
+          configOptions
+        );
+        break;
+      }
+      case ConnectionBackend.Ignite: {
+        connection = await createIgniteConnection(
           connectionConfig,
           configOptions
         );

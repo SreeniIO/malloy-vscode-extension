@@ -24,6 +24,7 @@
 export enum ConnectionBackend {
   BigQuery = 'bigquery',
   Postgres = 'postgres',
+  Ignite = 'ignite',
   DuckDB = 'duckdb',
   Snowflake = 'snowflake',
   Trino = 'trino',
@@ -33,6 +34,7 @@ export enum ConnectionBackend {
 export const ConnectionBackendNames: Record<ConnectionBackend, string> = {
   [ConnectionBackend.BigQuery]: 'BigQuery',
   [ConnectionBackend.Postgres]: 'Postgres',
+  [ConnectionBackend.Ignite]: 'Ignite (Beta)',
   [ConnectionBackend.DuckDB]: 'DuckDB',
   // TODO(whscullin): Remove beta once ready.
   [ConnectionBackend.Snowflake]: 'Snowflake (Beta)',
@@ -71,6 +73,12 @@ export interface PostgresConnectionConfig extends BaseConnectionConfig {
   connectionString?: string;
 }
 
+export interface IgniteConnectionConfig extends BaseConnectionConfig {
+  backend: ConnectionBackend.Ignite;
+  endPoint?: string;
+  defaultCacheName?: string;
+}
+
 export interface DuckDBConnectionConfig extends BaseConnectionConfig {
   additionalExtensions?: string[];
   backend: ConnectionBackend.DuckDB;
@@ -102,6 +110,7 @@ export interface PrestoConnectionConfig extends BaseConnectionConfig {
 export type ConnectionConfig =
   | BigQueryConnectionConfig
   | PostgresConnectionConfig
+  | IgniteConnectionConfig
   | DuckDBConnectionConfig
   | SnowflakeConnectionConfig
   | TrinoConnectionConfig

@@ -43,6 +43,7 @@ import {styles} from './connection_editor.css';
 import './bigquery_connection_editor';
 import './duckdb_connection_editor';
 import './postgres_connection_editor';
+import './ignite_connection_editor';
 import './snowflake_connection_editor';
 
 provideVSCodeDesignSystem().register(
@@ -90,6 +91,7 @@ export class ConnectionEditor extends LitElement {
     ConnectionBackend.Postgres,
     ConnectionBackend.DuckDB,
     ConnectionBackend.Snowflake,
+    ConnectionBackend.Ignite,
   ];
 
   override render() {
@@ -158,6 +160,12 @@ export class ConnectionEditor extends LitElement {
             .setConfig=${this.setConfig}
             .requestFilePath=${this.requestFilePath}
           ></snowflake-connection-editor>`
+        : this.config.backend === ConnectionBackend.Ignite
+        ? html`<ignite-connection-editor
+            .config=${this.config}
+            .setConfig=${this.setConfig}
+            .requestFilePath=${this.requestFilePath}
+          ></ignite-connection-editor>`
         : html`<div>Unknown Connection Type</div>`}
       <vscode-divider></vscode-divider>
       <table>

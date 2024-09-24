@@ -32,6 +32,7 @@ class ConnectionConfigManagerNode extends ConnectionConfigManagerBase {
       ConnectionBackend.Postgres,
       ConnectionBackend.Snowflake,
       ConnectionBackend.Trino,
+      ConnectionBackend.Ignite,
     ];
     if (isDuckDBAvailable) {
       available.push(ConnectionBackend.DuckDB);
